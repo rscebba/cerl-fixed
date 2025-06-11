@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: cerl
+Version: 0.0.5
+Summary: Library for querying CERL infrastructure
+Home-page: UNKNOWN
+Author: Andreas Walker
+Author-email: walker@sub.uni-goettingen.de
+License: MIT
+Description: # CERL library
+        
+        Python bindings for the [Consortium of European Research Library's API](https://data.cerl.org).
+        
+        See /docs/docs.ipynb for a Jupyter notebook with additional documentation
+        
+        ## Basic example
+        
+        ```python
+        from cerl import ample_query, ample_record, ids_from_result, by_dot, the
+        
+        # Connect to any AMPLE instance
+        ct = 'data.cerl.org/thesaurus'
+        # Run a search query
+        result = ample_query(ct, 'Purslowe, Elizabeth')
+        for idx in ids_from_result(result):
+            # Download the record as a Python dict
+            record = ample_record(ct, idx)
+            # Access the record by dot notation
+            cid = the(by_dot(record, '_id'))
+            assert cid == idx
+        ```
+        
+        ## Installation
+        
+        ```bash
+        pip3 install cerl
+        ```
+        
+        ## Features
+        * Access to any AMPLE instance by specifying the `host` string (e.g. "data.cerl.org/thesaurus")
+          * Some databases hardcoded as syntactic sugar:
+            * `CT` 
+            * `ISTC`
+            * `HOLDINST`
+            * `MEI`
+        * Use the standard search syntax with `ample_query`
+          * The same databases hardcoded as syntactic sugar: `ct_query` etc.
+        * Download records as Python `dict` objects with `ample_record`
+          * Again, `ct_record` etc.
+        * Download records in other formats with `ample_record_export`
+          * Again, `ct_record_export` etc.
+          * Export formats supported (but not all for each database):
+            * rdf/ttl
+            * rdf/xml
+            * rdf/jsonld
+            * json
+            * yaml
+            * unimarc
+        * Access to record fields using the dot notation from search syntax via `by_dot` (NOTE: always returns a `list` of results)
+            * If you know there is only one object/value being returned, wrap in `the`
+            * Syntactic sugar around some fields:
+              * Resolve CT record types with `ct_record_type`
+              * Get the CID (CERL ID) with `cid`
+        * Add a timestamp to a record after modifying it with `add_timestamp`
+        
+        
+            
+            
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8.5
+Description-Content-Type: text/markdown
