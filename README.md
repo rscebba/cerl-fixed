@@ -1,3 +1,6 @@
+This is a fork of the original cerl package by Andreas Walker (Hochschule Hannover, ORCID 0000-0002-1541-122X), preserved from version 0.0.5, with a small fix to cerl.py for compatibility with newer versions of urllib3.
+
+
 # CERL library
 
 Python bindings for the [Consortium of European Research Library's API](https://data.cerl.org).
