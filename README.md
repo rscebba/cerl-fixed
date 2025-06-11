@@ -8,7 +8,7 @@ NOTE: This is a fork of the original cerl package by Andreas Walker (Hochschule 
 ## Installation (Updated)
 
 ```bash
-pip install git+https://github.com/rossanascebba/cerl-fixed.git
+pip install git+https://github.com/rscebba/cerl-fixed.git
 ```
 Import as usual
  
